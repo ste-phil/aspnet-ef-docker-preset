@@ -30,14 +30,10 @@
         },
         {
             "label": "watch",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "watch",
-                "run",
-                "--project",
-                "${workspaceFolder}/HomeApp.Server/HomeApp.Server.csproj"
-            ],
+            "windows": {
+                "command": "$Env:${config:db_connection_string.key}='${config:db_connection_string.valu}';dotnet watch run --project ${workspaceFolder}/HomeApp.Server/HomeApp.Server.csproj",
+            },
+            "type": "shell",
             "problemMatcher": "$msCompile",
             "dependsOn": [
                 "start-postgres"
