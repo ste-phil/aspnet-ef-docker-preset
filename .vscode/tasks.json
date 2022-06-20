@@ -31,7 +31,7 @@
         {
             "label": "watch",
             "windows": {
-                "command": "$Env:${config:db_connection_string.key}='${config:db_connection_string.valu}';dotnet watch run --project ${workspaceFolder}/HomeApp.Server/HomeApp.Server.csproj",
+                "command": "$Env:${config:db_connection_string.key}='${config:db_connection_string.value}';dotnet watch run --project ${workspaceFolder}/HomeApp.Server/HomeApp.Server.csproj",
             },
             "type": "shell",
             "problemMatcher": "$msCompile",
