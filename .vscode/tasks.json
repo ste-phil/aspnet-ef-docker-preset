@@ -1,6 +1,9 @@
 {
     "version": "2.0.0",
     "tasks": [
+
+        // DEFAULT .NET TASKS
+
         {
             "label": "build",
             "command": "dotnet",
@@ -40,14 +43,20 @@
                 "start-postgres"
             ]
         },
+
+
+
+        // DOCKER TASKS
+
+
         {
             "label": "docker build/publish amd64",
-            "command": "docker build -f .\\Dockerfile . -t ste5phil/homeapp:amd64;docker push ste5phil/homeapp:amd64",
+            "command": "docker build -f .\\Dockerfile . -t ${config:registry}:amd64;docker push ${config:registry}:amd64",
             "type": "shell"
         },
         {
             "label": "docker build/publish arm32",
-            "command": "docker build -f .\\Dockerfile.debian-arm32 . -t ste5phil/homeapp:arm32;docker push ste5phil/homeapp:arm32",
+            "command": "docker build -f .\\Dockerfile.debian-arm32 . -t ${config:registry}:arm32;docker push ${config:registry}:arm32",
             "type": "shell",
             "problemMatcher": [
                 "$gcc"
@@ -55,7 +64,7 @@
         },
         {
             "label": "docker manifest create/publish",
-            "command": "docker manifest create ste5phil/homeapp:latest -a ste5phil/homeapp:arm32 -a ste5phil/homeapp:amd64; docker manifest push ste5phil/homeapp:latest",
+            "command": "docker manifest create ${config:registry}:latest -a ${config:registry}:arm32 -a ${config:registry}:amd64; docker manifest push ${config:registry}:latest",
             "type": "shell"
         },
         {
@@ -68,8 +77,13 @@
             ],
             "dependsOrder": "sequence"
         },
+
+
+        //DATABASE IMAGE STARTUP TASKS
+
+
         {
-            "label": "start-sqlserver",
+            "label": "start-mssql",
             "linux": {
                 "command": "insert linux command here if required"
             },

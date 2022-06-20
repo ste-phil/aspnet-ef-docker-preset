@@ -13,12 +13,6 @@
             "preLaunchTask": "build"
         },
         {
-            "name": "Attach",
-            "type": "coreclr",
-            "request": "attach",
-            "processName": "HomeApp.Server.exe"
-        },
-        {
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
@@ -36,14 +30,5 @@
                 "ConnectionStrings__AppDbContext": "Host=127.0.0.1;Database=homeapp;Username=postgres;Password=postgres"
             }
         },
-        {
-            "name": "Docker .NET Core Launch",
-            "type": "docker",
-            "request": "launch",
-            "preLaunchTask": "docker-run: debug",
-            "netCore": {
-                "appProject": "${workspaceFolder}/HomeApp.Server/HomeApp.Server.csproj"
-            }
-        }
     ]
 }
