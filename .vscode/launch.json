@@ -1,0 +1,49 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch",
+            "type": "DotNetWatch",
+            "request": "launch",
+            "project": "HomeApp.Server/HomeApp.Server.csproj",
+            "env": {
+                "ConnectionStrings__AppDbContext": "Host=127.0.0.1;Database=homeapp;Username=postgres;Password=postgres",
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "preLaunchTask": "build"
+        },
+        {
+            "name": "Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processName": "HomeApp.Server.exe"
+        },
+        {
+            "name": ".NET Core Launch (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/HomeApp.Server/bin/Debug/net6.0/HomeApp.Server.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/HomeApp.Server",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ConnectionStrings__AppDbContext": "Host=127.0.0.1;Database=homeapp;Username=postgres;Password=postgres"
+            }
+        },
+        {
+            "name": "Docker .NET Core Launch",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "docker-run: debug",
+            "netCore": {
+                "appProject": "${workspaceFolder}/HomeApp.Server/HomeApp.Server.csproj"
+            }
+        }
+    ]
+}
