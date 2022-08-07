@@ -6,8 +6,6 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["HomeApp.Server/HomeApp.Server.csproj", "HomeApp.Server/"]
-COPY ["HomeApp.Persistence/HomeApp.Persistence.csproj", "HomeApp.Persistence/"]
-COPY ["HomeApp.Library/HomeApp.Library.csproj", "HomeApp.Library/"]
 RUN dotnet restore "HomeApp.Server/HomeApp.Server.csproj"
 COPY . .
 WORKDIR "/src/HomeApp.Server"

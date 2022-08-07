@@ -6,8 +6,6 @@ EXPOSE 443
 
 # copy csproj and restore as distinct layers
 COPY ["HomeApp.Server/HomeApp.Server.csproj", "HomeApp.Server/"]
-COPY ["HomeApp.Persistence/HomeApp.Persistence.csproj", "HomeApp.Persistence/"]
-COPY ["HomeApp.Library/HomeApp.Library.csproj", "HomeApp.Library/"]
 RUN dotnet restore -r linux-arm "HomeApp.Server/HomeApp.Server.csproj"
 
 COPY . .
