@@ -1,6 +1,10 @@
 using System.Diagnostics;
-using HomeApp.Persistence;
+using HomeApp;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 //use this when running directly from powershell
 //$Env:ConnectionStrings__AppDbContext = "Host=127.0.0.1;Database=homeapp;Username=postgres;Password=postgres"
@@ -10,15 +14,12 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("AppDbContext"))
 );
-builder.Services.AddScoped<IRepositoryService, RepositoryDatabaseService>();
 
 var app = builder.Build();
 
@@ -30,16 +31,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseSwagger();
-app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"));
-
 app.UseHttpsRedirection();
-app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
 app.MapControllers();
-app.MapRazorPages();
 
 app.Run();

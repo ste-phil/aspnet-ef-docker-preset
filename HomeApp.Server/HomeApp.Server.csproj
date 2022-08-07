@@ -5,11 +5,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HomeApp.Library\HomeApp.Library.csproj"/>
-    <ProjectReference Include="..\HomeApp.Persistence\HomeApp.Persistence.csproj"/>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.6"/>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1"/>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.6"/>
   </ItemGroup>
 </Project>
